@@ -1,22 +1,30 @@
 {
-  "name": "10tut",
+  "name": "nap-pof",
   "version": "1.0.0",
-  "description": "Express tutorial",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server"
   },
-  "author": "Dave Gray",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nospoontoday/NAP-poc.git"
+  },
+  "author": "Oliver",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nospoontoday/NAP-poc/issues"
+  },
+  "homepage": "https://github.com/nospoontoday/NAP-poc#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
-    "date-fns": "^2.23.0",
-    "express": "^4.17.1",
+    "date-fns": "^2.28.0",
+    "express": "^4.18.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.15"
   }
 }
