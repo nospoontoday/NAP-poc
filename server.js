@@ -8,6 +8,9 @@ const errorHandler = require('./middleware/errorHandler');
 const credentials = require('./middleware/credentials');
 const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
+const graphql = require('graphql');
+const schema = require('./graphql');
+const { graphqlHTTP } = require('express-graphql');
 
 const PORT = process.env.PORT || 3500;
 
@@ -32,6 +35,11 @@ app.use(cookieParser());
 
 //serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
+
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true
+}));
 
 // routes
 app.use('/', require('./routes/root'));
