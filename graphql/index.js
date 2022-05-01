@@ -1,5 +1,6 @@
 const graphql = require("graphql");
-
+const EmployeeQueries = require('./queries/employees');
+console.log(EmployeeQueries);
 const {
     GraphQLObjectType,
     GraphQLSchema,
@@ -8,19 +9,12 @@ const {
     GraphQLList,
 } = graphql;
 
-const employeeData = require('../model/employees.json');
-
 const EmployeeType = require("./shapes/EmployeeType");
 
 const Query = new GraphQLObjectType({
     name: "Query",
     fields: {
-        getAllEmployees: {
-            type: new GraphQLList(EmployeeType),
-            resolve(parent, args) {
-                return employeeData;
-            },
-        },
+        ...EmployeeQueries
     },
 });
 
