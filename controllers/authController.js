@@ -10,9 +10,18 @@ const fsPromises = require('fs').promises; // temporary since we don't have db y
 const path = require('path');
 
 const handleLogin = async (req, res) => {
-    const { user, pwd } = req.body;
+    // const { user, pwd } = req;
+    const user = req.username;
+    const pwd = req.password;
+    // if (!user || !pwd) return {
+    //     'status': 400,
+    //     'message': 'Username and password are required.'
+    // };
+
     if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
     const foundUser = usersDB.users.find(person => person.username === user);
+    // if (!foundUser) return {'status': 401}; //Unauthorized
+
     if (!foundUser) return res.sendStatus(401); //Unauthorized 
     // evaluate password 
     const match = await bcrypt.compare(pwd, foundUser.password);

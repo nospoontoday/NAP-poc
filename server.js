@@ -36,10 +36,13 @@ app.use(cookieParser());
 //serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
 
-app.use('/graphql', graphqlHTTP({
-    schema,
-    graphiql: true
-}));
+app.use('/graphql', 
+    graphqlHTTP((_, res) => ({
+        schema,
+        context: { res },
+        graphiql: true
+    }))
+);
 
 // routes
 app.use('/', require('./routes/root'));
